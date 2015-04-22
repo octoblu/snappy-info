@@ -19,3 +19,12 @@ See [device definitions](http://system-image.ubuntu.com/channels.json) in the ub
 
 ### Device Setup:
 0. Boot (XUbuntu) LiveCD on target device
+
+
+### Graphical Setup:
+
+[More info on low memory setups](https://help.ubuntu.com/community/Installation/LowMemorySystems)
+
+To setup chrome without a window manager place the following in ~/.xinitrc:
+`/opt/google/chrome/google-chrome --app=https://web.com/`
+
