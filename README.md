@@ -1,5 +1,5 @@
 # snappy-info
-Light-weight devices are becoming more affordable and readily available. Similarly, Linux OSes such as Ubuntu Core are minimal, performant and complements the Internet of Things and other connected devices.  
+Light-weight devices are becoming more affordable and readily available. Similarly, Linux OSes such as Ubuntu Core are minimal, performant and accomodate the Internet of Things and other connected devices well.  
 So let's load Ubuntu Core onto light-weight devices.
 
 ### Image Setup:
@@ -15,7 +15,7 @@ Set-up the appropriate tools for downloading images:
 To download a generic x86_64 image of size 3G, use the following command:  
 `ubuntu-device-flash core -s 3 -o snappy_flash.img --enable-ssh --channel=ubuntu-core/devel --device=generic_amd64`
 
-See [device definitions](http://system-image.ubuntu.com/channels.json) in the ubuntu-core/devel channel.
+For Ubuntu Core device/architecture-specific images, check out the [device definitions](http://system-image.ubuntu.com/channels.json) in the ubuntu-core/devel channel.
 
 ### Device Setup:
 0. Boot (XUbuntu) LiveCD on target device
