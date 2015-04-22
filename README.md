@@ -1,4 +1,6 @@
 # snappy-info
+Light-weight devices are becoming more affordable and more available. Similarly, Linux OSes such as Ubuntu Core are minimal, performant and appropraite for the Internet of Things and other connected devices.
+So, let's load Ubuntu Core onto light-weight devices.
 
 ### Image Setup:
 [View getting started guide](https://developer.ubuntu.com/en/snappy/start/)
