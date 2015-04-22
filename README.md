@@ -15,7 +15,7 @@ Set-up the appropriate tools for downloading images:
 To download a generic x86_64 image of size 3G, use the following command:  
 `ubuntu-device-flash core -s 3 -o snappy_flash.img --enable-ssh --channel=ubuntu-core/devel --device=generic_amd64`
 
-For Ubuntu Core device/architecture-specific images, check out the [device definitions](http://system-image.ubuntu.com/channels.json) in the ubuntu-core/devel channel.
+To download device/architecture-specific images, check out the [device definitions](http://system-image.ubuntu.com/channels.json) in the ubuntu-core/devel channel.
 
 ### Device Setup:
 0. Boot (XUbuntu) LiveCD on target device
