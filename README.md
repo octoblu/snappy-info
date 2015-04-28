@@ -46,12 +46,13 @@ To download device/architecture-specific images, check out the [device definitio
 
 [More info on low memory setups](https://help.ubuntu.com/community/Installation/LowMemorySystems)
 
-1. Install xorg and wget on target device: `sudo apt-get install -y xorg wget`
-1. Download chrome: `wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O chrome.deb`
-1. Install chrome.deb to target: `dpkg -i chrome.deb`
-1. Install chrome dependencies: `sudo apt-get -f install`
-1. To setup chrome to launch without a window manager place the following in ~/.xinitrc: `/opt/google/chrome/google-chrome --app=https://web.com/`
-1. Create the following file at `/etc/systemd/system/xinit@.service`: 
+0. Make sure root filesystem is writable: `sudo mount -o remount,rw /`
+0. Install xorg and wget on target device: `sudo apt-get install -y xorg wget`
+0. Download chrome: `wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O chrome.deb`
+0. Install chrome.deb to target: `dpkg -i chrome.deb`
+0. Install chrome dependencies: `sudo apt-get -f install`
+0. To setup chrome to launch without a window manager place the following in ~/.xinitrc: `/opt/google/chrome/google-chrome --app=http://localhost:8080/`
+0. Create the following file at `/etc/systemd/system/xinit@.service`: 
     ```
     [Unit]
     Description=startx for user %i
@@ -71,5 +72,5 @@ To download device/architecture-specific images, check out the [device definitio
     [Install]
     WantedBy=graphical.target
     ```
-1. Enable xinit for the ubuntu user: `sudo systemctl enable xinit@ubuntu`
-1. Enable x11-common for 'Anybody': `sudo dpkg-reconfigure x11-common`
+0. Enable xinit for the ubuntu user: `sudo systemctl enable xinit@ubuntu`
+0. Enable x11-common for 'Anybody': `sudo dpkg-reconfigure x11-common`
