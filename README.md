@@ -51,26 +51,36 @@ To download device/architecture-specific images, check out the [device definitio
 0. Download chrome: `wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O chrome.deb`
 0. Install chrome.deb to target: `dpkg -i chrome.deb`
 0. Install chrome dependencies: `sudo apt-get -f install`
-0. To setup chrome to launch without a window manager place the following in ~/.xinitrc: `/opt/google/chrome/google-chrome --app=http://localhost:8080/`
+0. To setup chrome to launch without a window manager place the following in `/home/ubuntu/.xinitrc`:
+    ```
+xset s off         # don't activate screensaver
+xset -dpms         # disable DPMS (Energy Star) features.
+xset s noblank     # don't blank the video device
+/opt/google/chrome/google-chrome --app=https://app.octoblu.com/
+    ```
 0. Create the following file at `/etc/systemd/system/xinit@.service`: 
     ```
-    [Unit]
-    Description=startx for user %i
-    After=x@vt7.service systemd-user-sessions.service
-    Wants=x@vt7.service
-    Conflicts=getty@tty7.service
-    
-    [Service]
-    User=%i
-    TTYPath=/dev/tty7
-    PAMName=login
-    Environment=DISPLAY=:0
-    WorkingDirectory=/home/%I
-    Nice=0
-    ExecStart=/bin/bash -l -c "while true; do startx -- :0 vt7 >/dev/null 2>&1; done"
-    
-    [Install]
-    WantedBy=graphical.target
+[Unit]
+Description=startx for user %i
+After=x@vt7.service systemd-user-sessions.service
+Wants=x@vt7.service
+Conflicts=getty@tty7.service
+
+[Service]
+User=%i
+TTYPath=/dev/tty7
+PAMName=login
+Environment=DISPLAY=:0
+WorkingDirectory=/home/%I
+Nice=0
+ExecStart=/bin/bash -l -c "while true; do startx -- :0 vt7 -s 0 -dpms >/dev/null 2>&1; done"
+
+[Install]
+WantedBy=graphical.target
     ```
 0. Enable xinit for the ubuntu user: `sudo systemctl enable xinit@ubuntu`
 0. Enable x11-common for 'Anybody': `sudo dpkg-reconfigure x11-common`
+0. Start up xorg: `sudo service xinit@ubuntu start`
+0. Stop xorg and kill chrome: `sudo service xinit@ubuntu stop; pkill chrome`
+0. Fix chrome app dimensions:
+ `(WIDTH=1920 HEIGHT=1080 && sed -e "s/\"\(right\)\":.*,/\"\1\": ${WIDTH},/" -e "s/\"\(bottom\)\":.*,/\"\1\": ${HEIGHT},/" -e 's/"\(left\|top\)":.*,/"\1": 0,/' -i /home/ubuntu/.config/google-chrome/Default/Preferences)`
