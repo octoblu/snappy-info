@@ -52,6 +52,7 @@ To download device/architecture-specific images, check out the [device definitio
 0. Install chrome.deb to target: `dpkg -i chrome.deb`
 0. Install chrome dependencies: `sudo apt-get -f install`
 0. To setup chrome to launch without a window manager place the following in `/home/ubuntu/.xinitrc`:
+
     ```
 xset s off         # don't activate screensaver
 xset -dpms         # disable DPMS (Energy Star) features.
