@@ -74,7 +74,7 @@ PAMName=login
 Environment=DISPLAY=:0
 WorkingDirectory=/home/%I
 Nice=0
-ExecStart=/bin/bash -l -c "while true; do startx -- :0 vt7 -s 0 -dpms >/dev/null 2>&1; done"
+ExecStart=/bin/bash -l -c "while true; do startx -- :0 vt7 >/dev/null 2>&1; done"
 
 [Install]
 WantedBy=graphical.target
