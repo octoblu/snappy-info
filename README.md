@@ -6,11 +6,12 @@ So let's load Ubuntu Core onto light-weight devices.
 [Follow Snappy Ubuntu's getting started guide](https://developer.ubuntu.com/en/snappy/start/)
 
 Set-up the appropriate tools for downloading images:
-- `$ sudo -i`
-- `add-apt-repository ppa:snappy-dev/beta`
-- `apt-get update`
-- `apt-get upgrade`
-- `apt-get install snappy-tools bzr`
+
+    sudo -i
+    add-apt-repository ppa:snappy-dev/beta
+    apt-get update
+    apt-get upgrade
+    apt-get install snappy-tools bzr
 
 To download a generic x86_64 image of size 3.9GB, use the following command:  
 `sudo ubuntu-device-flash core 15.04 -s 4 -o snappy.img --enable-ssh --channel=stable --device=generic_amd64`
@@ -34,11 +35,11 @@ To download device/architecture-specific images, check out the [device definitio
 
 #### Apt setup from host:
 0. Download most current apt package from host (https://launchpad.net/ubuntu/vivid/amd64/apt/)
-0. Copy package to target device: `scp apt_X.X.X.Xubuntu4_amd64.deb ubuntu@10.42.0.22:apt.deb`
+0. Copy package to target device: `scp apt_*ubuntu4_amd64.deb ubuntu@10.42.0.22:apt.deb`
 
 #### Apt setup from target:
 0. Remount root filesystem as writable: `sudo mount -o remount,rw /`
-0. Install desired package: `dpkg -i apt.deb`
+0. Install desired package: `sudo dpkg -i apt.deb`
 0. Remove no-apt links: `cd /usr/local/bin; sudo rm apt*`
 0. Update apt: `sudo apt-get update`
 
@@ -49,7 +50,7 @@ To download device/architecture-specific images, check out the [device definitio
 0. Make sure root filesystem is writable: `sudo mount -o remount,rw /`
 0. Install xorg and wget on target device: `sudo apt-get install -y xorg wget`
 0. Download chrome: `wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O chrome.deb`
-0. Install chrome.deb to target: `dpkg -i chrome.deb`
+0. Install chrome.deb to target: `sudo dpkg -i chrome.deb`
 0. Install chrome dependencies: `sudo apt-get -f install`
 0. To setup chrome to launch without a window manager place the following in `/home/ubuntu/.xinitrc`:
 
