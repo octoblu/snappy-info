@@ -84,4 +84,11 @@ WantedBy=graphical.target
 0. Start up xorg: `sudo service xinit@ubuntu start`
 0. Stop xorg and kill chrome: `sudo service xinit@ubuntu stop; pkill chrome`
 0. Fix chrome app dimensions:
- `(WIDTH=1920 HEIGHT=1080 && sed -e "s/\"\(right\)\":.*,/\"\1\": ${WIDTH},/" -e "s/\"\(bottom\)\":.*,/\"\1\": ${HEIGHT},/" -e 's/"\(left\|top\)":.*,/"\1": 0,/' -i /home/ubuntu/.config/google-chrome/Default/Preferences)`
+
+    ```
+    ( WIDTH=1920 HEIGHT=1080 && \
+      sed -e "s/\"\(right\)\":.*,/\"\1\": ${WIDTH},/" \
+          -e "s/\"\(bottom\)\":.*,/\"\1\": ${HEIGHT},/" \
+          -e 's/"\(left\|top\)":.*,/"\1": 0,/' \
+          -i /home/ubuntu/.config/google-chrome/Default/Preferences )
+    ```
