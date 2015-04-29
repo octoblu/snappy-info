@@ -93,3 +93,18 @@ WantedBy=graphical.target
           -e 's/"\(left\|top\)":.*,/"\1": 0,/' \
           -i /home/ubuntu/.config/google-chrome/Default/Preferences )
     ```
+
+#### Setup i386
+
+If using 32-bit executables on a 64-bit machine bash may not recognize the executable as existing:
+    ```
+    # /opt/node/bin/node 
+    -bash: /opt/node/bin/node: No such file or directory
+    ```
+
+To fix add i386 to the dpkg architecture list, and install the appropriate libstdc++
+    ```
+    sudo dpkg --add-architecture i386
+    sudo apt-get update
+    sudo apt-get install -y libstdc++6:i386
+    ```
