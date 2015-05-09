@@ -106,3 +106,22 @@ To fix this issue add i386 to the dpkg architecture list, and install the approp
     sudo dpkg --add-architecture i386
     sudo apt-get update
     sudo apt-get install -y libstdc++6:i386
+
+### Setup Octoblu to launch at runtime
+   
+0. Create the following file at `/etc/systemd/system/octoblu-init.service`: 
+    ```
+[Unit]
+Description=Octoblu startup
+
+[Service]
+User=root
+PAMName=login
+WorkingDirectory=/root
+ExecStart=/bin/bash -l -c "cd /etc/init.d/octoblu.init; for f in *; do ./$f start; done"
+
+[Install]
+WantedBy=graphical.target
+    ```
+0. Enable launching the init scripts: `sudo systemctl enable octoblu-init`
+
